@@ -67,11 +67,22 @@ var apiclient = (function(){
 			console.info("ERROR");
 		});
 	}
+	getInventarios = function (callback){
+		var productos = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/todoslosinventarios/", function() {
+		  response=productos.responseText;
+		  console.log(productos);
+		}).done(function(){
+			callback(JSON.parse(productos.responseText))})
+		.fail(()=>{
+			alert("No se encontraron inventarios")
+		});	
+	}
 	return{
 		getProductosTipos:getProductosTipos,
 		getProductoById:getProductoById,
 		crearProducto:crearProducto,
 		getCantidadProductos:getCantidadProductos,
 		crearInventarioProducto:crearInventarioProducto,
+		getInventarios:getInventarios,
 	}
 })();

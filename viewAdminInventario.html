@@ -37,11 +37,12 @@
 		   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		 <![endif]-->
 		 <script src="./src/components/product.js" rel="script"></script>
+		 <script src="./src/components/administrador.js"></script>
 		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		 <script src="./src/services/apiclient.js"></script>
 
     </head>
-	<body>
+	<body onload="administrador.cargarInventario()">
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
@@ -153,22 +154,7 @@
 				</div>
 				<div class="tbl-content">
 				  <table cellpadding="0" cellspacing="0" border="0">
-					<tbody>
-					  <tr>
-						<td>AAC</td>
-						<td>AUSTRALIAN COMPANY </td>
-						<td>$1.38</td>
-						<td>+2.01</td>
-					  </tr>
-					  <tr>
-						<td>AAD</td>
-						<td>AUSENCO</td>
-						<td>$2.38</td>
-						<td>-0.01</td>
-					  </tr>
-					  
-					  
-					  
+					<tbody id="espacio">
 					</tbody>
 				  </table>
 				</div>
