@@ -40,6 +40,7 @@ product = (function (){
             $("#producto").append(div);         
         })    
     }
+    /**
     function checkout(){
         var hola=obtener_localstorage();
         iterar=hola.map((info)=>{
@@ -51,6 +52,7 @@ product = (function (){
         </div>` 
         })
     }
+    */
 
     function dirigirView(hola){
         
