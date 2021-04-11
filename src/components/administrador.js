@@ -34,7 +34,6 @@ administrador=(function(){
         apiclient.getCantidadProductos(setProximoId);    
     }
     function pintarTabla(inventarios){
-        console.log(inventarios);
         listaInventario=inventarios.map((info)=>{
             console.log(info);
             var div=`<tr id="espacio">

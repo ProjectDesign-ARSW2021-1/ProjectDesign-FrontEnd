@@ -26,7 +26,7 @@ product = (function (){
             <div class="col-sm-4 col-xs-15">
                 <div class="product">
                     <div class="product-img">
-                        <img src="./public/img/${info.nombre}.png">
+                        <img src="./public/img/${info.imagenes}.png">
                     </div>
                     <div class="product-body">
                         <h3><a href="productView.html" class="product-name" id="product-name">${info.nombre}</h3></a>

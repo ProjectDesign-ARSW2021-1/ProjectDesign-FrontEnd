@@ -70,7 +70,6 @@ var apiclient = (function(){
 	getInventarios = function (callback){
 		var productos = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/todoslosinventarios/", function() {
 		  response=productos.responseText;
-		  console.log(productos);
 		}).done(function(){
 			callback(JSON.parse(productos.responseText))})
 		.fail(()=>{
