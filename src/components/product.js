@@ -129,7 +129,7 @@ product = (function (){
         obtener_localstorage:obtener_localstorage,
         buscarporidParaView:buscarporidParaView,
         dirigirView:dirigirView,
-        checkout:checkout
+        //checkout:checkout
         
     }
 
