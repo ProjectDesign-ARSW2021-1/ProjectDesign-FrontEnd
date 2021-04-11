@@ -11,6 +11,7 @@ product = (function (){
         product = urlParams.get('name');
         $("#productName").html(product);
         getProductosTipo();
+        checkout();
     }
     function getProductosTipo(){
         apiclient.getProductosTipos(product,productosByTipo);
@@ -20,13 +21,12 @@ product = (function (){
             return new Error("No se encontro ningun producto");
         }
         data=productos.map((info)=>{
-			console.log(info.imagenes)
             var div=`<div class="row">
             <!-- product -->
             <div class="col-sm-4 col-xs-15">
                 <div class="product">
                     <div class="product-img">
-                        <img src="./public/img/${info.imagenes}.png">
+                        <img src="./public/img/${info.nombre}.png">
                     </div>
                     <div class="product-body">
                         <h3><a href="productView.html" class="product-name" id="product-name">${info.nombre}</h3></a>
@@ -37,19 +37,18 @@ product = (function (){
                     </div>
                 </div>
             </div>`
-
             $("#producto").append(div);         
         })    
     }
     function checkout(){
         var hola=obtener_localstorage();
         iterar=hola.map((info)=>{
-            console.log(info)
-            division=`<div class="order-col">
-            <div>${info.nombre}</div>
-            <div>${info.precio}</div>
-            </div>` 
-            $("#lista").append(division);
+            division=`<div class="order-products" id="lista">
+            <div class="order-col">
+                <div>hola</div>
+                <div>hola</div>
+            </div>
+        </div>` 
         })
     }
 
@@ -80,6 +79,7 @@ product = (function (){
         return carrito;
     }
     function productView (producto){
+        console.log("hola");
         var div=`<div class="product-details">
             <h2 class="product-name">${producto.nombre}</h2>
             <div>

@@ -6,41 +6,42 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Project Design</title>
-		<link rel="shortcut icon" type="image/x-icon" href="public/img/favicon.png" />
-
-
- 		<!-- Google font -->
- 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
- 		<!-- Bootstrap -->
- 		<link type="text/css" rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css"/>
-
- 		<!-- Slick -->
- 		<link type="text/css" rel="stylesheet" href="public/bootstrap/css/slick.css"/>
- 		<link type="text/css" rel="stylesheet" href="public/bootstrap/css/slick-theme.css"/>
-
- 		<!-- nouislider -->
- 		<link type="text/css" rel="stylesheet" href="public/bootstrap/css/nouislider.min.css"/>
-
- 		<!-- Font Awesome Icon -->
- 		<link rel="stylesheet" href="public/bootstrap/css/font-awesome.min.css">
-
- 		<!-- Custom stlylesheet -->
- 		<link type="text/css" rel="stylesheet" href="public/bootstrap/css/style.css"/>
-
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		<script src="./src/components/product.js" rel="script"></script>
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="./src/services/apiclient.js"></script>
+		 <title>Project Design</title>
+		 <link rel="shortcut icon" type="image/x-icon" href="public/img/favicon.png" />
+ 
+ 
+		  <!-- Google font -->
+		  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+ 
+		  <!-- Bootstrap -->
+		  <link type="text/css" rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css"/>
+ 
+		  <!-- Slick -->
+		  <link type="text/css" rel="stylesheet" href="public/bootstrap/css/slick.css"/>
+		  <link type="text/css" rel="stylesheet" href="public/bootstrap/css/slick-theme.css"/>
+ 
+		  <!-- nouislider -->
+		  <link type="text/css" rel="stylesheet" href="public/bootstrap/css/nouislider.min.css"/>
+ 
+		  <!-- Font Awesome Icon -->
+		  <link rel="stylesheet" href="public/bootstrap/css/font-awesome.min.css">
+ 
+		  <!-- Custom stlylesheet -->
+		  <link type="text/css" rel="stylesheet" href="public/bootstrap/css/style.css"/>
+ 
+		 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		 <!--[if lt IE 9]>
+		   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		 <![endif]-->
+		 <script src="./src/components/product.js" rel="script"></script>
+		 <script src="./src/components/administrador.js"></script>
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		 <script src="./src/services/apiclient.js"></script>
 
     </head>
-	<body>
+	<body onload="administrador.init()">
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
@@ -52,7 +53,7 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i> Bogotá , Colombia </a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="miCuenta.html"><i class="fa fa-user-o"></i> Mi Cuenta </a></li>
+						<li><a href="#"><i class="fa fa-user-o"></i> Mi Cuenta </a></li>
 					</ul>
 				</div>
 			</div>
@@ -68,7 +69,7 @@
 						
 						<div class="col-md-3">
 							<div class="header-logo">
-								<class="logo">
+								<a href="#" class="logo">
 									<img src="./public/img/logo.png" alt="">
 								</a>
 							</div>
@@ -77,30 +78,17 @@
 						<!-- /LOGO -->
 						<!-- SEARCH BAR -->
                         <div class="col-md-6">
-                            <div class="header-search">
+                            
                                 <form>
-                                    <input class="input" placeholder="Search here">
-                                    <button class="search-btn">Buscar</button>
+                                   <center> <h3 class="title">ADMINISTRADOR</h3></center>
                                 </form>
-                            </div>
+                            
                         </div>
-                        <!-- /SEARCH BAR --
+                        <!-- /SEARCH BAR -->
 
 						
 
-						<!-- ACCOUNT -->
-						<div class="col-md-3 clearfix">
-							<div class="header-ctn">
-								<!-- Cart -->
-								<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-										<i class="fa fa-shopping-cart"></i>
-										<span><a href="carrito.html">Carrito de Compras</a></span>
-									</a>
-									¿
-									</div>
-								</div>
-								<!-- /Cart -->
+						
 
 								
 
@@ -126,14 +114,9 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						
-						<li><a href="index.html">Inicio</a></li>
-						<li><a href="product.html?name=Cuadernos">Cuadernos</a></li>
-						<li><a href="product.html?name=Gorras">Gorras</a></li>
-						<li><a href="product.html?name=Maletas">Maletas</a></li>
-						<li><a href="product.html?name=Pocillos">Pocillos</a></li>
-						<li><a href="product.html?name=Camisetas">Camisetas</a></li>
-						<li><a href="product.html?name=Busos">Busos</a></li>
-						
+						<li class="active"><a href="viewAdminCrearProducto.html">Crear Producto</a></li>
+						<li><a href="viewAdminInventario.html">Ver Inventario</a></li>
+						<li><a href="a">Editar Inventario</a></li>
 
 					</ul>
 					<!-- /NAV -->
@@ -144,17 +127,15 @@
 		</nav>
 		<!-- /NAVIGATION -->
 
+
 		<!-- BREADCRUMB -->
 		<div id="breadcrumb" class="section">
 			<!-- container -->
-			<div class="container" >
+			<div class="container">
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<ul class="breadcrumb-tree">
-							<li><a href="index.html">Inicio</a></li>
-							<li class="active" id="productName"></li>
-						</ul>
+						<h3 class="breadcrumb-header">Crear Producto</h3>
 					</div>
 				</div>
 				<!-- /row -->
@@ -169,56 +150,71 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<!-- Product main img -->
-					<div class="col-md-5 col-md-push-2">
-						<div id="product-main-img">
-							<div class="product-preview">
-								<img src="./public/img/logo.png" alt="">
+
+					<div class="col-md-7">
+						<!-- Billing Details -->
+						<div class="billing-details">
+							<div class="form-group">
+								<input class="input" type="text" id=nombreProducto placeholder="Nombre">
 							</div>
-						</div>
-					</div>
-					<!-- /Product main img -->
-
-					<!-- Product thumb imgs -->
-					<div class="col-md-2  col-md-pull-5">
-						
-					</div>
-					<!-- /Product thumb imgs -->
-
-					<!-- Product details -->
-					<div class="col-md-5" id="detallesProducto">
-						<h2 class="product-name">Nombre del Producto</h2>
-						<div>
-							<h3 class="product-price">Precio del Producto</h3>
-						</div>
-						<p>TEXTO</p>
-			
-						<div class="product-options">
-							<label>
-								<div class="order-summary">
-									<div class="order-products">
-										<div class="order-col">
-											<div>Especificación</div>
-											<div>----</div>
-										</div>
-										<div class="order-col">
-											<div>Tipo</div>
-											<div>----</div>
-										</div>
-									</div>
+							<div class="form-group">
+								<input class="input" type="text" id=especificacionProducto placeholder="Especificación">
+							</div>
+							<div class="form-group">
+								<input class="input" id=precioProducto placeholder="Precio">
+							</div>
+							<div class="form-group">
+								<input class="input" id=cantidadProducto placeholder="Cantidad">
+							</div>
+							
+							<div class="form-group">
+								<input class="input" type="text" id=textoProducto placeholder="Texto">
+							</div>
+							<div class="shop-body" class="form-group">
+								<h4>Fecha</h4>
+							</div>
+							<div class="form-group">
+								<input class="input" type="date" id=fechaProducto placeholder="Fecha">
+							</div>
+							<div class="form-group">
+								<div class="shop-body">
+									<h4>Tipo</h4>
+								</div>		
+								<select class="input" id="tipoProducto" name="producto">
+									<option value="Selecciona un tipo">Selecciona un tipo</option>
+									<option value="Camisetas">Camisetas</option>
+									<option value="Busos">Busos</option>
+									<option value="Pocillos">Pocillos</option>
+									<option value="Maletas">Maletas</option>
+									<option value="Cuadernos">Cuadernos</option>
+									<option value="Gorras">Gorras</option>
+								  </select>
+								  <label name="lbl" id="lbl"></label>
+								</div>
+							</div>
+							
+							<div class="shop-body">
+								<h5>Imagen</h5>
+							</div>
+							<div class="form-group">
+							
+								<input type="file" id="myFile" name="filename">
+							  
+							</div> 
+							<div class="form-group">
+								<div class="input-checkbox">
+									<input type="checkbox" id="create-account">
+									<label for="create-account">
+										<a class="primary-btn order-submit" onclick="administrador.llenarFormulario()">Crear Producto</a>
+									</label>
 									
 								</div>
-							</label>
-							
+							</div>
 						</div>
-			
-						<div class="add-to-cart">
-							<a href="#" class="primary-btn order-submit">Añadir al Carrito</a>
-						</div>
-			
+						<!-- /Billing Details -->
+
 						
-			
-					</div>
+
 						
 					</div>
 
@@ -229,8 +225,6 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
-
-		
 
 		
 

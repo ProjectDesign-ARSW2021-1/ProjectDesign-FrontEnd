@@ -36,7 +36,7 @@
 		<![endif]-->
 
     </head>
-	<body onload="product.checkout()">
+	<body>
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
@@ -48,7 +48,7 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i> Bogotá , Colombia </a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-user-o"></i> Mi Cuenta </a></li>
+						<li><a href="miCuenta.html"><i class="fa fa-user-o"></i> Mi Cuenta </a></li>
 					</ul>
 				</div>
 			</div>
@@ -93,6 +93,7 @@
 										<i class="fa fa-shopping-cart"></i>
 										<span><a href="carrito.html">Carrito de Compras</a></span>
 									</a>
+									¿
 									</div>
 								</div>
 								<!-- /Cart -->
@@ -185,6 +186,14 @@
 								<div><strong>TOTAL</strong></div>
 							</div>
 							<div class="order-products" id="lista">
+								<div class="order-col">
+									<div>1x Product Name Goes Here</div>
+									<div>$980.00</div>
+								</div>
+								<div class="order-col">
+									<div>2x Product Name Goes Here</div>
+									<div>$980.00</div>
+								</div>
 							</div>
 							<div class="order-col">
 								<div>Envío</div>
@@ -267,7 +276,6 @@
 		<script src="public/bootstrap/js/nouislider.min.js"></script>
 		<script src="public/bootstrap/js/jquery.zoom.min.js"></script>
 		<script src="public/bootstrap/js/main.js"></script>
-		<script src="./src/components/product.js" rel="script"></script>
 
 	</body>
 </html>
