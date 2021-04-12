@@ -40,7 +40,7 @@
 		<script src="./src/services/apiclient.js"></script>
 
     </head>
-	<body>
+	<body onload="product.viewProducto()">
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
@@ -68,7 +68,7 @@
 						
 						<div class="col-md-3">
 							<div class="header-logo">
-								<class="logo">
+								<a href="index.html" class="logo">
 									<img src="./public/img/logo.png" alt="">
 								</a>
 							</div>
@@ -127,12 +127,6 @@
 					<ul class="main-nav nav navbar-nav">
 						
 						<li><a href="index.html">Inicio</a></li>
-						<li><a href="product.html?name=Cuadernos">Cuadernos</a></li>
-						<li><a href="product.html?name=Gorras">Gorras</a></li>
-						<li><a href="product.html?name=Maletas">Maletas</a></li>
-						<li><a href="product.html?name=Pocillos">Pocillos</a></li>
-						<li><a href="product.html?name=Camisetas">Camisetas</a></li>
-						<li><a href="product.html?name=Busos">Busos</a></li>
 						
 
 					</ul>
@@ -153,7 +147,7 @@
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
 							<li><a href="index.html">Inicio</a></li>
-							<li class="active" id="productName"></li>
+							<li class="active" id="product"></li>
 						</ul>
 					</div>
 				</div>
@@ -166,65 +160,8 @@
 		<!-- SECTION -->
 		<div class="section">
 			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<!-- Product main img -->
-					<div class="col-md-5 col-md-push-2">
-						<div id="product-main-img">
-							<div class="product-preview">
-								<img src="./public/img/logo.png" alt="">
-							</div>
-						</div>
-					</div>
-					<!-- /Product main img -->
-
-					<!-- Product thumb imgs -->
-					<div class="col-md-2  col-md-pull-5">
-						
-					</div>
-					<!-- /Product thumb imgs -->
-
-					<!-- Product details -->
-					<div class="col-md-5" id="detallesProducto">
-						<h2 class="product-name">Nombre del Producto</h2>
-						<div>
-							<h3 class="product-price">Precio del Producto</h3>
-						</div>
-						<p>TEXTO</p>
-			
-						<div class="product-options">
-							<label>
-								<div class="order-summary">
-									<div class="order-products">
-										<div class="order-col">
-											<div>Especificación</div>
-											<div>----</div>
-										</div>
-										<div class="order-col">
-											<div>Tipo</div>
-											<div>----</div>
-										</div>
-									</div>
-									
-								</div>
-							</label>
-							
-						</div>
-			
-						<div class="add-to-cart">
-							<a href="#" class="primary-btn order-submit">Añadir al Carrito</a>
-						</div>
-			
-						
-			
-					</div>
-						
-					</div>
-
-					
-				</div>
-				<!-- /row -->
+			<div class="container" id="detallesProducto">
+				
 			</div>
 			<!-- /container -->
 		</div>

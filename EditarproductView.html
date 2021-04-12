@@ -28,7 +28,6 @@
  
 		  <!-- Custom stlylesheet -->
 		  <link type="text/css" rel="stylesheet" href="public/bootstrap/css/style.css"/>
-		  <link type="text/css" rel="stylesheet" href="public/bootstrap/css/style1.css"/>
  
 		 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,7 +41,7 @@
 		 <script src="./src/services/apiclient.js"></script>
 
     </head>
-	<body onload="administrador.cargarInventario()">
+	<body onload="administrador.editarInventario()">
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
@@ -85,7 +84,7 @@
                                 </form>
                             
                         </div>
-                        <!-- /SEARCH BAR --
+                        <!-- /SEARCH BAR -->
 
 						
 
@@ -113,9 +112,11 @@
 				<!-- responsive-nav -->
 				<div id="responsive-nav">
 					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">	
-						<li><a href="viewAdminCrearProducto.html">Crear Producto</a></li>
-						<li class="active"><a href="viewAdminInventario.html">Ver Inventario</a></li>
+					<ul class="main-nav nav navbar-nav">
+						
+						<li class="active"><a href="viewAdminCrearProducto.html">Crear Producto</a></li>
+						<li><a href="viewAdminInventario.html">Ver Inventario</a></li>
+
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -125,43 +126,35 @@
 		</nav>
 		<!-- /NAVIGATION -->
 
-
 		<!-- BREADCRUMB -->
 		<div id="breadcrumb" class="section">
 			<!-- container -->
-		
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">MODIFICAR PRODUCTO</h3>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
 		<!-- /BREADCRUMB -->
 
 		<!-- SECTION -->
-		
-			
-				<!--for demo wrap-->
-				<h1>INVENTARIO</h1>
-				<div class="tbl-header">
-				  <table cellpadding="0" cellspacing="0" border="0">
-					<thead>
-					  <tr>
-						<th>Nombre del Producto</th>
-						<th>Id</th>
-						<th>Ultima Modificación</th>
-						<th>Cantidad</th>
-						<th>Seleccionar</th>
-					  </tr>
-					</thead>
-				  </table>
-				</div>
-				<div class="tbl-content">
-				  <table cellpadding="0" cellspacing="0" border="0">
-					<tbody id="espacio">
-					</tbody>
-				  </table>
-				</div>
-			  </section>
-			  
-			  
-			  
+		<div class="section">
+			<!-- container -->
+			<div class="container" id="editarInventario">
+				
+
+				
+			</div>
+			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
+
+		
 
 		
 

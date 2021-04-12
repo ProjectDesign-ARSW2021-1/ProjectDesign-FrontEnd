@@ -17,6 +17,16 @@ var apiclient = (function(){
 			alert("No se encontro productos de tipo  "+tipo)
 		});	
 	}
+	getInventario = function (id, callback){
+		var productos = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/inventario/"+id, function() {
+		  response=productos.responseText;
+		}).done(function(){
+			callback(JSON.parse(productos.responseText))})
+		.fail(()=>{
+			alert("No se encontro inventario para ese producto "+id)
+		});	
+	}
+	
 	getCantidadProductos = function (callback){
 		var productos = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/todoslosproductos/", function() {
 		  response=productos.responseText;
@@ -29,7 +39,7 @@ var apiclient = (function(){
 	crearProducto=function(id,nombre,especificacion,precio,tipo,texto,imagenes){
 		var json=JSON.stringify({
 			"nombre" : nombre ,
-			"especifacion" : especificacion ,
+			"especificacion" : especificacion ,
 			"precio" : parseFloat(precio) ,
 			"id" : id ,
 			"tipo" : tipo ,
@@ -48,6 +58,23 @@ var apiclient = (function(){
 			console.info("ERROR");
 		});
 	}
+	actualizarInventario= function (id,cantidad) {
+		console.log(id,cantidad);
+		var promise = $.ajax({
+			url: "https://proyectoarsw2021backend.herokuapp.com/actualizarcantidad/"+id,
+			type: 'PUT',
+			data: cantidad,
+			contentType: "application/json"
+		});
+		promise.then(function () {
+			console.info("OK");
+			alert("Cantidad Actualizada");
+		}, function () {
+			console.info("ERROR");
+
+
+		});
+	},
 	crearInventarioProducto=function(idProducto,nombreProducto,fechaUltimaModi,cantidad){
 		var json=JSON.stringify({
 			"id" : idProducto ,
@@ -83,5 +110,7 @@ var apiclient = (function(){
 		getCantidadProductos:getCantidadProductos,
 		crearInventarioProducto:crearInventarioProducto,
 		getInventarios:getInventarios,
+		getInventario:getInventario,
+		actualizarInventario:actualizarInventario,
 	}
 })();
