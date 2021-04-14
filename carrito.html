@@ -36,7 +36,7 @@
 		<![endif]-->
 
     </head>
-	<body>
+	<body onload="product.checkout()">
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
@@ -186,22 +186,15 @@
 								<div><strong>TOTAL</strong></div>
 							</div>
 							<div class="order-products" id="lista">
-								<div class="order-col">
-									<div>1x Product Name Goes Here</div>
-									<div>$980.00</div>
-								</div>
-								<div class="order-col">
-									<div>2x Product Name Goes Here</div>
-									<div>$980.00</div>
-								</div>
+								
 							</div>
 							<div class="order-col">
 								<div>Envío</div>
 								<div><strong>GRATIS</strong></div>
 							</div>
-							<div class="order-col">
+							<div class="order-col" id=total>
 								<div><strong>TOTAL</strong></div>
-								<div><strong class="order-total">$2940.00</strong></div>
+								
 							</div>
 						</div>
 						
@@ -276,6 +269,9 @@
 		<script src="public/bootstrap/js/nouislider.min.js"></script>
 		<script src="public/bootstrap/js/jquery.zoom.min.js"></script>
 		<script src="public/bootstrap/js/main.js"></script>
-
+		<script src="./src/components/product.js" rel="script"></script>
+		<script src="./src/components/administrador.js"></script>
+		<script src="./src/services/apiclient.js"></script>
+		
 	</body>
 </html>

@@ -53,7 +53,6 @@ administrador=(function(){
           </tr>`
             $("#espacio").append(div);         
         })  
-        
     }
     function editarInventario(){
         const values = window.location.search;

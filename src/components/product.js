@@ -6,6 +6,7 @@ product = (function (){
     var idSelect;
     var productoSelect;
     var division;
+    var inventarioSelect;
     const getAndShowProductName = () => {
         const values = window.location.search;
         const urlParams = new URLSearchParams(values);
@@ -39,26 +40,30 @@ product = (function (){
                         <h4 class="product-price" id="product-price">${info.precio}</h4>
                     </div>
                     <div class="add-to-cart">
-                    <button class="add-to-cart-btn" onclick="product.buscarporid(${info.id})"><i class="fa fa-shopping-cart"></i> Añadir al Carrito </button></a>
+                    <button class="add-to-cart-btn" onclick="product.obtenerInventarioDelProducto(${info.id}),product.buscarporid(${info.id})"><i class="fa fa-shopping-cart"></i> Añadir al Carrito </button></a>
                     </div>
                 </div>
             </div>`
             $("#producto").append(div);         
         })    
     }
-    /**
     function checkout(){
         var hola=obtener_localstorage();
+        var total=0;
+        console.log(hola);
         iterar=hola.map((info)=>{
-            division=`<div class="order-products" id="lista">
+            total=total+info.precio;
+            division=`<div class="order-products">
             <div class="order-col">
-                <div>hola</div>
-                <div>hola</div>
+                <div>${info.nombre}</div>
+                <div>${info.precio}</div>
             </div>
-        </div>` 
+            </div>` 
+            $("#lista").append(division); 
         })
+        divisiontotal=`<div><strong class="order-total">${total}</strong></div>`
+            $("#total").append(divisiontotal); 
     }
-    */
     function buscarporid(id){
         apiclient.getProductoById(id,agregarCarrito);
     }
@@ -66,18 +71,40 @@ product = (function (){
         apiclient.getProductoById(id,productView);
     }
     const agregarCarrito=(producto)=>{
+        obtenerInventarioDelProducto(producto.id);
         var viejo =JSON.parse(localStorage.getItem("carrito"))
-        if (productos.length===0 && viejo===null){
-            productos.push(producto);
-            localStorage.setItem("carrito",JSON.stringify(productos));
+        var puedo=verifique(inventarioSelect);
+        apiclient.actualizarInventarioCarrito(inventarioSelect.id,inventarioSelect.cantidad-1);
+        if(puedo===true){
+            alert("Producto añadido al carrito");
+            if (productos.length===0 && viejo===null){
+                productos.push(producto);
+                localStorage.setItem("carrito",JSON.stringify(productos));
+            }else{
+                viejo.push(producto);
+                localStorage.setItem("carrito",JSON.stringify(viejo));
+            }
         }else{
-            viejo.push(producto);
-            localStorage.setItem("carrito",JSON.stringify(viejo));
+            alert("El producto "+ producto.nombre+" no esta disponible");
         }
+       
     }
     function obtener_localstorage(){
         carrito=JSON.parse(localStorage.getItem("carrito"));
         return carrito;
+    }
+    function obtenerInventarioDelProducto(id){
+        apiclient.getInventarioDelProducto(id,setInventario)
+    }
+    function setInventario(inventario){
+        inventarioSelect=inventario
+    }
+    function verifique(inventario){
+        if(inventario.cantidad>0){
+            return true;
+        }else{
+            return false;
+        }
     }
     function productView (producto){
         productoSelect=producto.nombre; 
@@ -128,13 +155,9 @@ product = (function (){
                     </label>
                     
                 </div>
-    
                 <div class="add-to-cart">
-                    <a href="#" class="primary-btn order-submit">Añadir al Carrito</a>
+                <button class="add-to-cart-btn" onclick="product.obtenerInventarioDelProducto(${producto.id}),product.buscarporid(${producto.id})"><i class="fa fa-shopping-cart"></i> Añadir al Carrito </button></a>
                 </div>
-    
-                
-    
             </div>
                 
             </div>
@@ -155,7 +178,10 @@ product = (function (){
         buscarporidParaView:buscarporidParaView,
         productView:productView,
         viewProducto:viewProducto,
-        //checkout:checkout
+        checkout:checkout,
+        obtenerInventarioDelProducto:obtenerInventarioDelProducto,
+        setInventario:setInventario,
+        verifique:verifique
         
     }
 

@@ -75,6 +75,21 @@ var apiclient = (function(){
 
 		});
 	},
+	actualizarInventarioCarrito= function (id,cantidad) {
+		console.log(typeof(id),typeof(cantidad));
+		var promise = $.ajax({
+			url: "https://proyectoarsw2021backend.herokuapp.com/actualizarcantidadcarrito/"+id,
+			type: 'PUT',
+			contentType: "application/json"
+		});
+		promise.then(function () {
+			console.info("OK");
+		}, function () {
+			console.info("ERROR");
+
+
+		});
+	},
 	crearInventarioProducto=function(idProducto,nombreProducto,fechaUltimaModi,cantidad){
 		var json=JSON.stringify({
 			"id" : idProducto ,
@@ -103,6 +118,15 @@ var apiclient = (function(){
 			alert("No se encontraron inventarios")
 		});	
 	}
+	getInventarioDelProducto = function (id,callback){
+		var productos = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/inventario/"+id, function() {
+		  response=productos.responseText;
+		}).done(function(){
+			callback(JSON.parse(productos.responseText))})
+		.fail(()=>{
+			alert("No se encontro el inventario del producto con id : "+id)
+		});	
+	}
 	return{
 		getProductosTipos:getProductosTipos,
 		getProductoById:getProductoById,
@@ -112,5 +136,7 @@ var apiclient = (function(){
 		getInventarios:getInventarios,
 		getInventario:getInventario,
 		actualizarInventario:actualizarInventario,
+		getInventarioDelProducto:getInventarioDelProducto,
+		actualizarInventarioCarrito:actualizarInventarioCarrito
 	}
 })();
