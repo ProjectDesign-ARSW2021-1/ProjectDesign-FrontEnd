@@ -1,5 +1,5 @@
 administrador=(function(){
-    var id;
+    var id=0;
     var nombre=null;
     var especificacion;
     var precio;
@@ -12,7 +12,8 @@ administrador=(function(){
     var cantidad;
     var idSelect;
     function setProximoId(productos){
-        id="Pro"+(productos.length+1)+"ducto";
+        console.log(productos.length);
+        id=productos.length+1;
     }
     const llenarFormulario=() =>{
         nombre=$("#nombreProducto").val();
@@ -24,10 +25,11 @@ administrador=(function(){
         cantidad=$("#cantidadProducto").val();
         imagenes=nombre.replace(/ /g,"");
         if(nombre===""||especificacion===""||precio===""||texto===""||tipo==="Selecciona un tipo"){
-            alert("Completar campos resqueridos");
+            alert("Completar campos requeridos");
         }else{
             apiclient.crearProducto(id,nombre,especificacion,precio,tipo,texto,imagenes);
             apiclient.crearInventarioProducto(id,nombre,fechaUltimaModi,cantidad);
+            
         }
     }
     const actualizarInventario=() =>{

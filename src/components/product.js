@@ -49,9 +49,9 @@ product = (function (){
     }
     function checkout(){
         var hola=obtener_localstorage();
-        var total=0;
-        console.log(hola);
-        iterar=hola.map((info)=>{
+        if (hola!==null){
+            var total=0;
+            iterar=hola.map((info)=>{
             total=total+info.precio;
             division=`<div class="order-products">
             <div class="order-col">
@@ -63,6 +63,20 @@ product = (function (){
         })
         divisiontotal=`<div><strong class="order-total">${total}</strong></div>`
             $("#total").append(divisiontotal); 
+        }
+        else{
+            division=`<div class="order-products">
+            <div class="order-col">
+                <div>Carro Vacio</div>
+            </div>
+            </div>` 
+            $("#lista").append(division); 
+        divisiontotal=`<div><strong class="order-total">0</strong></div>`
+            $("#total").append(divisiontotal); 
+        
+
+        }
+        
     }
     function buscarporid(id){
         apiclient.getProductoById(id,agregarCarrito);
@@ -154,10 +168,10 @@ product = (function (){
                         </div>
                     </label>
                     
-                </div>
+
                 <div class="add-to-cart">
-                <button class="add-to-cart-btn" onclick="product.obtenerInventarioDelProducto(${producto.id}),product.buscarporid(${producto.id})"><i class="fa fa-shopping-cart"></i> Añadir al Carrito </button></a>
-                </div>
+							<p onclick="product.obtenerInventarioDelProducto(${producto.id}),product.buscarporid(${producto.id})" class="primary-btn order-submit">Añadir al Carrito</a></p>
+				</div>
             </div>
                 
             </div>
@@ -166,6 +180,11 @@ product = (function (){
         </div>
         <!-- /row -->`
             $("#detallesProducto").append(div);
+        }
+
+        function vaciarCarrito (){
+            console.log("hola")
+            localStorage.clear()
         }
 
     return{
@@ -181,7 +200,8 @@ product = (function (){
         checkout:checkout,
         obtenerInventarioDelProducto:obtenerInventarioDelProducto,
         setInventario:setInventario,
-        verifique:verifique
+        verifique:verifique,
+        vaciarCarrito:vaciarCarrito
         
     }
 
