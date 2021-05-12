@@ -36,6 +36,16 @@ var apiclient = (function(){
 			alert("No se encontraron productos")
 		});	
 	}
+	getDatosUsuario = function(id,callback){
+		var datosUsuario = $.getJSON("localhost:8080/usuariobyid/"+id, function(){
+			response=datosUsuario.responseText;	
+		}).done(function(){
+			callback(JSON.parse(datosUsuario.responseText))})
+		.fail(()=>{
+			alert("No se encontro la orden de compra")
+		});	
+		
+	}
 	crearProducto=function(id,nombre,especificacion,precio,tipo,texto,imagenes){
 		var json=JSON.stringify({
 			"nombre" : nombre ,
@@ -75,6 +85,7 @@ var apiclient = (function(){
 
 		});
 	},
+	/**
 	actualizarInventarioCarrito= function (id,cantidad) {
 		console.log(typeof(id),typeof(cantidad));
 		var promise = $.ajax({
@@ -90,6 +101,7 @@ var apiclient = (function(){
 
 		});
 	},
+	*/
 	crearInventarioProducto=function(idProducto,nombreProducto,fechaUltimaModi,cantidad){
 		var json=JSON.stringify({
 			"id" : idProducto ,
@@ -118,6 +130,33 @@ var apiclient = (function(){
 			alert("No se encontraron inventarios")
 		});	
 	}
+	crearOrdendeCompra=function(total,productos,descripcion,direccion,ciudad){
+		var json=JSON.stringify({
+			"id" : 123 ,
+			"descripcion" : descripcion ,
+			"total" : total ,
+			"direccion" : direccion ,
+			"ciudad" : ciudad,
+			"productos" : productos,
+			"nombreUsuario" : "Santiago el amor de mi vida",
+			"telefonoUsuario" : 21435343
+		})
+		var promise=$.ajax({
+			url: "https://proyectoarsw2021backend.herokuapp.com/ordenDeCompra/",
+			method: "POST",
+			data: json,
+			contentType:"application/json"
+		});
+		promise.then(function(){
+			alert("Orden de compra creada");
+		},function(){
+			console.info("ERROR");
+		});
+	}
+
+	/**
+	 
+	   
 	getInventarioDelProducto = function (id,callback){
 		var productos = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/inventario/"+id, function() {
 		  response=productos.responseText;
@@ -126,6 +165,28 @@ var apiclient = (function(){
 		.fail(()=>{
 			alert("No se encontro el inventario del producto con id : "+id)
 		});	
+	}*/
+	getCarritoUsuario=function(id,callback){
+		var carrito = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/carrito/"+id, function() {
+		  response=carrito.responseText;
+		}).done(function(){
+			callback(JSON.parse(carrito.responseText))})
+		.fail(()=>{
+			alert("Carrito : "+id)
+		});	
+	},
+	actualizarCarrito=function (id,carrito) {
+		var promise = $.ajax({
+			url: "https://proyectoarsw2021backend.herokuapp.com/actualizarcarrito/"+'21324',
+			type: 'PUT',
+			data: JSON.stringify(carrito),
+			contentType: "application/json"
+		});
+		promise.then(function () {
+			console.info("OK");
+		}, function () {
+			console.info("ERROR");
+		});
 	}
 	return{
 		getProductosTipos:getProductosTipos,
@@ -136,7 +197,11 @@ var apiclient = (function(){
 		getInventarios:getInventarios,
 		getInventario:getInventario,
 		actualizarInventario:actualizarInventario,
-		getInventarioDelProducto:getInventarioDelProducto,
-		actualizarInventarioCarrito:actualizarInventarioCarrito
+		//getInventarioDelProducto:getInventarioDelProducto,
+		//actualizarInventarioCarrito:actualizarInventarioCarrito,
+		getCarritoUsuario:getCarritoUsuario,
+		actualizarCarrito:actualizarCarrito,
+		getDatosUsuario:getDatosUsuario,
+		crearOrdendeCompra:crearOrdendeCompra,
 	}
 })();

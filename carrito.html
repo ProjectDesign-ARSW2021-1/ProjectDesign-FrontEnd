@@ -36,7 +36,7 @@
 		<![endif]-->
 
     </head>
-	<body onload="product.checkout()">
+	<body onload="product.obtenerCarritoDelUsuarioCheckout('21324')">
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
@@ -93,7 +93,6 @@
 										<i class="fa fa-shopping-cart"></i>
 										<span><a href="carrito.html">Carrito de Compras</a></span>
 									</a>
-									¿
 									</div>
 								</div>
 								<!-- /Cart -->
@@ -166,15 +165,8 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-
 					<div class="col-md-7">
-						
-
-						
-
-						
 					</div>
-
 					<!-- Order Details -->
 					<div class="col-md-6 order-details">
 						<div class="section-title text-center">
@@ -194,14 +186,13 @@
 							</div>
 							<div class="order-col" id=total>
 								<div><strong>TOTAL</strong></div>
-								
 							</div>
 						</div>
 				
 
 						<div class="add-to-cart">
-							<p onclick=""><a href="javascript:location.reload()" class="primary-btn order-submit">PAGAR</a></p>
-							<p onclick="product.vaciarCarrito()"><a href="javascript:location.reload()" class="primary-btn order-submit">VACIAR CARRITO</a></p>
+							<p onclick=""><a href="checkout.html" class="primary-btn order-submit">IR A COMPRAR</a></p>
+							<p onclick="product.vaciarCarrito()"><a  class="primary-btn order-submit">VACIAR CARRITO</a></p>
 						</div>
 						
 					

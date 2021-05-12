@@ -6,7 +6,10 @@ product = (function (){
     var idSelect;
     var productoSelect;
     var division;
-    var inventarioSelect;
+    var carritoSelect;
+    var usuario;
+    var total=0;
+
     const getAndShowProductName = () => {
         const values = window.location.search;
         const urlParams = new URLSearchParams(values);
@@ -40,44 +43,14 @@ product = (function (){
                         <h4 class="product-price" id="product-price">${info.precio}</h4>
                     </div>
                     <div class="add-to-cart">
-                    <button class="add-to-cart-btn" onclick="product.obtenerInventarioDelProducto(${info.id}),product.buscarporid(${info.id})"><i class="fa fa-shopping-cart"></i> Añadir al Carrito </button></a>
+                    <button class="add-to-cart-btn" onclick="product.obtenerCarritoDelUsuario('21324'),product.buscarporid(${info.id})"><i class="fa fa-shopping-cart"></i> Añadir al Carrito </button></a>
                     </div>
                 </div>
             </div>`
             $("#producto").append(div);         
         })    
     }
-    function checkout(){
-        var hola=obtener_localstorage();
-        if (hola!==null){
-            var total=0;
-            iterar=hola.map((info)=>{
-            total=total+info.precio;
-            division=`<div class="order-products">
-            <div class="order-col">
-                <div>${info.nombre}</div>
-                <div>${info.precio}</div>
-            </div>
-            </div>` 
-            $("#lista").append(division); 
-        })
-        divisiontotal=`<div><strong class="order-total">${total}</strong></div>`
-            $("#total").append(divisiontotal); 
-        }
-        else{
-            division=`<div class="order-products">
-            <div class="order-col">
-                <div>Carro Vacio</div>
-            </div>
-            </div>` 
-            $("#lista").append(division); 
-        divisiontotal=`<div><strong class="order-total">0</strong></div>`
-            $("#total").append(divisiontotal); 
-        
-
-        }
-        
-    }
+    
     function buscarporid(id){
         apiclient.getProductoById(id,agregarCarrito);
     }
@@ -85,34 +58,25 @@ product = (function (){
         apiclient.getProductoById(id,productView);
     }
     const agregarCarrito=(producto)=>{
-        obtenerInventarioDelProducto(producto.id);
-        var viejo =JSON.parse(localStorage.getItem("carrito"))
-        var puedo=verifique(inventarioSelect);
-        apiclient.actualizarInventarioCarrito(inventarioSelect.id,inventarioSelect.cantidad-1);
-        if(puedo===true){
-            alert("Producto añadido al carrito");
-            if (productos.length===0 && viejo===null){
-                productos.push(producto);
-                localStorage.setItem("carrito",JSON.stringify(productos));
-            }else{
-                viejo.push(producto);
-                localStorage.setItem("carrito",JSON.stringify(viejo));
-            }
-        }else{
-            alert("El producto "+ producto.nombre+" no esta disponible");
-        }
-       
+        var productosViejos =carritoSelect.productos;
+        productosViejos.push(producto);
+        carritoSelect.productos=productosViejos;
+        apiclient.actualizarCarrito('21324',carritoSelect.productos);
+        alert("Añadido al carrito")
     }
     function obtener_localstorage(){
         carrito=JSON.parse(localStorage.getItem("carrito"));
         return carrito;
+        
     }
-    function obtenerInventarioDelProducto(id){
-        apiclient.getInventarioDelProducto(id,setInventario)
+    function obtenerCarritoDelUsuario(id){
+        apiclient.getCarritoUsuario(id,setCarrito);
+
     }
-    function setInventario(inventario){
-        inventarioSelect=inventario
+    function setCarrito(carrito){
+        carritoSelect=carrito; 
     }
+    
     function verifique(inventario){
         if(inventario.cantidad>0){
             return true;
@@ -120,6 +84,7 @@ product = (function (){
             return false;
         }
     }
+
     function productView (producto){
         productoSelect=producto.nombre; 
         $("#product").html(productoSelect);               
@@ -160,32 +125,80 @@ product = (function (){
                                 </div>
                                 <div class="order-col">
                                 <div>Tipo :</div>
-                                    <div>${producto.tipo}</div>
-                                    
+                                    <div>${producto.tipo}</div>   
                                 </div>
                             </div>
-                            
                         </div>
                     </label>
-                    
-
                 <div class="add-to-cart">
-							<p onclick="product.obtenerInventarioDelProducto(${producto.id}),product.buscarporid(${producto.id})" class="primary-btn order-submit">Añadir al Carrito</a></p>
+							<p onclick="product.obtenerCarritoDelUsuario('21324'),product.buscarporid(${producto.id})" class="primary-btn order-submit">Añadir al Carrito</a></p>
 				</div>
             </div>
-                
             </div>
-
-            
         </div>
         <!-- /row -->`
             $("#detallesProducto").append(div);
         }
 
         function vaciarCarrito (){
-            console.log("hola")
-            localStorage.clear()
+            console.log(carritoSelect);
+            apiclient.actualizarCarrito('hola',[]);
         }
+
+        function obtenerCarritoDelUsuarioCheckout(id){
+            apiclient.getCarritoUsuario(id,checkout);
+        }
+        function checkout(carrito){
+            var hola=carrito.productos;
+            localStorage.setItem("carrito",carrito.productos);
+            if (hola.lenght!==0){
+                iterar=hola.map((info)=>{
+                total=total+info.precio;
+                division=`<div class="order-products">
+                <div class="order-col">
+                    <div>${info.nombre}</div>
+                    <div>${info.precio}</div>
+                </div>
+                </div>` 
+                $("#lista").append(division); 
+            })
+            divisiontotal=`<div><strong class="order-total">${total}</strong></div>`
+                $("#total").append(divisiontotal); 
+            }
+            else{
+                division=`<div class="order-products">
+                <div class="order-col">
+                    <div>Carro Vacio</div>
+                </div>
+                </div>` 
+                $("#lista").append(division); 
+            divisiontotal=`<div><strong class="order-total">0</strong></div>`
+                $("#total").append(divisiontotal); 
+            }
+        }
+    function getDatosUsuario(id){
+        console.log(id);
+        apiclient.getDatosUsuario('6074ac2378961c030fdadd10',setUsuario);
+
+    } 
+    function setUsuario(usuario){
+        console.log(usuario);
+        usuario=usuario;
+    }
+
+    const llenarFormularioOrdenDeCompra=() =>{
+        console.log(total);
+        console.log(carritoSelect);
+        descripcion=$("#descripcion").val();
+        direccion=$("#direccion").val();
+        ciudad=$("#ciudad").val();
+
+        if(descripcion===""||direccion===""||ciudad===""){
+            alert("Completar campos requeridos");
+        }else{
+            apiclient.crearOrdendeCompra(total,carritoSelect.productos,descripcion,direccion,ciudad);
+        }
+    }
 
     return{
         getAndShowProductName: getAndShowProductName,
@@ -198,10 +211,14 @@ product = (function (){
         productView:productView,
         viewProducto:viewProducto,
         checkout:checkout,
-        obtenerInventarioDelProducto:obtenerInventarioDelProducto,
-        setInventario:setInventario,
+        obtenerCarritoDelUsuario:obtenerCarritoDelUsuario,
+        setCarrito:setCarrito,
         verifique:verifique,
-        vaciarCarrito:vaciarCarrito
+        vaciarCarrito:vaciarCarrito,
+        obtenerCarritoDelUsuarioCheckout:obtenerCarritoDelUsuarioCheckout,
+        getDatosUsuario:getDatosUsuario,
+        setUsuario:setUsuario,
+        llenarFormularioOrdenDeCompra:llenarFormularioOrdenDeCompra,
         
     }
 
