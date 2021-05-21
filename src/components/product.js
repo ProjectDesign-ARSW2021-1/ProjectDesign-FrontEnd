@@ -74,7 +74,12 @@ product = (function (){
 
     }
     function setCarrito(carrito){
-        carritoSelect=carrito; 
+        carritoSelect=carrito;
+        return  
+    }
+    function getCarrito(){
+        console.log("HOLA")
+        return "2";
     }
     
     function verifique(inventario){
@@ -139,12 +144,10 @@ product = (function (){
         <!-- /row -->`
             $("#detallesProducto").append(div);
         }
-
         function vaciarCarrito (){
             console.log(carritoSelect);
             apiclient.actualizarCarrito('hola',[]);
         }
-
         function obtenerCarritoDelUsuarioCheckout(id){
             apiclient.getCarritoUsuario(id,checkout);
         }
@@ -162,8 +165,8 @@ product = (function (){
                 </div>` 
                 $("#lista").append(division); 
             })
-            divisiontotal=`<div><strong class="order-total">${total}</strong></div>`
-                $("#total").append(divisiontotal); 
+            divisiontotal=`<div><strong class="order-total">${total/3750}</strong></div>`
+                $("#hp").append(divisiontotal); 
             }
             else{
                 division=`<div class="order-products">
@@ -219,6 +222,7 @@ product = (function (){
         getDatosUsuario:getDatosUsuario,
         setUsuario:setUsuario,
         llenarFormularioOrdenDeCompra:llenarFormularioOrdenDeCompra,
+        getCarrito:getCarrito
         
     }
 
