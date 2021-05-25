@@ -46,6 +46,18 @@ var apiclient = (function(){
 		});	
 		
 	}
+	getUsuarioToken = function (user,callback) {
+		console.log(user);
+		var userToken=$.getJSON("http://localhost:8080/perfil/token/"+ user , function(){
+			response=userToken.responseText;
+				
+		}).done(function(){
+			callback(JSON.parse(userToken.responseText))})
+		.fail(()=>{
+			alert("No se encontro usuario con este token")
+		});	
+		
+	}
 	crearProducto=function(id,nombre,especificacion,precio,tipo,texto,imagenes){
 		var json=JSON.stringify({
 			"nombre" : nombre ,
@@ -106,6 +118,7 @@ var apiclient = (function(){
 		promise.then(function(data){
 			alert("Inicio de sesion correcto");
 			localStorage.setItem("usuario",data)
+			localStorage.setItem("correo",username)
 		},function(){
 			console.info("ERROR");
 			console.log(username);
@@ -254,6 +267,7 @@ var apiclient = (function(){
 		});
 	}
 	return{
+		getUsuarioToken:getUsuarioToken,
 		crearCarrito:crearCarrito,
 		getProductosTipos:getProductosTipos,
 		getProductoById:getProductoById,

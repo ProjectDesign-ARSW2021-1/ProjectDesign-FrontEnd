@@ -7,7 +7,9 @@ login = (function (){
     var direccion;
     var contraseña;
     var cargo;
-    
+    var correoToken;
+    var nombreToken;
+    var telefonoToken;
 
     const llenarFormularioUsuario=()=>{
         cargo=$("#cargoUsuario").val();
@@ -33,11 +35,12 @@ login = (function (){
             alert("Completar campos requeridos");
         }else{
             apiclient.iniciarSesion(username,password);
+            /*window.location.href="/carrito.html"*/
             console.log(username);
         }  
 
     }
-    
+
     
     return{
         hacerpost:hacerpost,

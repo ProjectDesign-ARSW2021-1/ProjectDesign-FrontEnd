@@ -17,6 +17,8 @@ product = (function (){
         $("#productName").html(product);
         getProductosTipo();
     }
+
+    
     function viewProducto(){
         const values = window.location.search;
         const urlParams = new URLSearchParams(values);
@@ -65,10 +67,21 @@ product = (function (){
         alert("Añadido al carrito")
     }
     function obtener_localstorage(){
-        carrito=JSON.parse(localStorage.getItem("carrito"));
-        return carrito;
+        console.log("hola")
+        carrito=localStorage.getItem("usuario");
+        correo=localStorage.getItem("correo");
+        console.log(correo);
+        
+        if(carrito!==null)
+        {
+            apiclient.getUsuarioToken(carrito,getDatosUsuario);
+        }else
+        {
+            alert("Debe iniciar Sesion primero");
+        }
         
     }
+    
     function obtenerCarritoDelUsuario(id){
         apiclient.getCarritoUsuario(id,setCarrito);
 
@@ -181,7 +194,8 @@ product = (function (){
         }
     function getDatosUsuario(id){
         console.log(id);
-        apiclient.getDatosUsuario('6074ac2378961c030fdadd10',setUsuario);
+        /*apiclient.getDatosUsuario('6074ac2378961c030fdadd10',setUsuario);*/
+
 
     } 
     function setUsuario(usuario){
