@@ -37,7 +37,7 @@ var apiclient = (function(){
 		});	
 	}
 	getDatosUsuario = function(id,callback){
-		var datosUsuario = $.getJSON("localhost:8080/usuariobyid/"+id, function(){
+		var datosUsuario = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/usuariobyid/"+id, function(){
 			response=datosUsuario.responseText;	
 		}).done(function(){
 			callback(JSON.parse(datosUsuario.responseText))})
@@ -66,6 +66,49 @@ var apiclient = (function(){
 			alert("Producto creado");
 		},function(){
 			console.info("ERROR");
+		});
+	}
+	crearUsuario=function(cargo,nombreUsuario,telefono,correo,direccion,contraseña){
+		var json=JSON.stringify({
+
+			"cargo" : cargo,
+			"nombre" : nombreUsuario ,
+			"telefono" : parseInt(telefono) ,
+			"correo" : correo ,
+			"direccion" : direccion ,
+			"contrasena" : contraseña
+		})
+		var promise=$.ajax({
+			url: "https://proyectoarsw2021backend.herokuapp.com/usuario/",
+			method: "POST",
+			data: json,
+			contentType:"application/json"
+		});
+		promise.then(function(){
+			alert("Usuario creado");
+		},function(){
+			console.info("ERROR");
+		});
+	}
+
+	iniciarSesion=function(username,password){
+		var json=JSON.stringify({
+			"correo" : username ,
+			"contrasena" : password ,
+			 
+		})
+		var promise=$.ajax({
+			url: "https://proyectoarsw2021backend.herokuapp.com/auth/login",
+			method: "POST",
+			data: json,
+			contentType:"application/json"
+		});
+		promise.then(function(data){
+			alert("Inicio de sesion correcto");
+			localStorage.setItem("usuario",data)
+		},function(){
+			console.info("ERROR");
+			console.log(username);
 		});
 	}
 	actualizarInventario= function (id,cantidad) {
@@ -197,6 +240,8 @@ var apiclient = (function(){
 		getInventarios:getInventarios,
 		getInventario:getInventario,
 		actualizarInventario:actualizarInventario,
+		crearUsuario:crearUsuario,
+		iniciarSesion:iniciarSesion,
 		//getInventarioDelProducto:getInventarioDelProducto,
 		//actualizarInventarioCarrito:actualizarInventarioCarrito,
 		getCarritoUsuario:getCarritoUsuario,

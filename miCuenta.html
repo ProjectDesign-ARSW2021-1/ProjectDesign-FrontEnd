@@ -173,33 +173,41 @@
 				<div class="row">
 
 					<div class="col-md-7">
-						<!-- Billing Details -->
+						<!--Billing Details -->
 						<div class="billing-details">
 							<div class="section-title">
 								<h3 class="title">REGISTRATE</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="Nombre">
+								<input class="input" type="text" id="cargoUsuario" placeholder="Cargo">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Telefono">
+								<input class="input" type="text" id="nombreUsuario" placeholder="Nombre">
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Correo">
+								<input class="input" type="text" id="telefono" placeholder="Telefono">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="Dirección">
+								<input class="input" type="email" id="correoUsuario" placeholder="Correo">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" id="direccionUsuario" placeholder="Dirección">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" id="contraseña" placeholder="Contraseña">
 							</div>
 							<div class="form-group">
 								<div class="input-checkbox">
 									<input type="checkbox" id="create-account">
 									<label for="create-account">
-										<a href="#" class="primary-btn order-submit">Registrarse</a>
+										<a class="primary-btn order-submit" onclick="login.llenarFormularioUsuario()">Registrarse</a>
 									</label>
 									
 								</div>
 							</div>
 						</div>
+
+
 						<!-- /Billing Details -->
 
 						
@@ -212,40 +220,22 @@
 						<div class="section-title text-center">
 							<h3 class="title">¿Ya tienes una cuenta? Ingresa</h3>
 						</div>
-						<div class="input-radio">
-							<input type="radio" name="payment" id="payment-1">
-							<label for="payment-1">
-								<span></span>
-								Comprador
-							</label>
-							
-						</div>
-						<div class="input-radio">
-							<input type="radio" name="payment" id="payment-2">
-							<label for="payment-2">
-								<span></span>
-								Gerente
-							</label>
-							
-						</div>
-						<div class="input-radio">
-							<input type="radio" name="payment" id="payment-3">
-							<label for="payment-3">
-								<span></span>
-								Empleado
-							</label>
-							
-						</div>
 						<div class="order-summary">
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email">
+								<input class="input" type="email" id="email" placeholder="email">
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Contraseña">
+								<input class="input" type="text" id="password" placeholder="Contraseña">
 							</div>
-							<label for="create-account">
-								<a href="#" class="primary-btn order-submit">Iniciar Sesión</a>
-							</label>
+							<div class="form-group">
+								<div class="input-checkbox">
+									<input type="checkbox" id="create-account">
+									<label for="create-account">
+										<a class="primary-btn order-submit" onclick="login.hacerpost()">Login</a>
+									</label>
+									
+								</div>
+							</div>
 						</div>
 						
 						</div>
