@@ -165,7 +165,7 @@ product = (function (){
                 </div>` 
                 $("#lista").append(division); 
             })
-            divisiontotal=`<div><strong class="order-total">${total/3750}</strong></div>`
+            divisiontotal=`<div><strong class="order-total">${total}</strong></div>`
                 $("#hp").append(divisiontotal); 
             }
             else{
@@ -195,12 +195,39 @@ product = (function (){
         descripcion=$("#descripcion").val();
         direccion=$("#direccion").val();
         ciudad=$("#ciudad").val();
+        apikey="4Vj8eK4rloUd272L48hsrarnUA";
+        merchantid="508029";
+        idOrden="Orden10";
+        divisa="COP";
+        firma=apikey+"~"+merchantid+"~"+idOrden+"~"+total+"~"+divisa;
+        signature=CryptoJS.MD5(firma).toString();
+        console.log(signature);
 
+        var payu=`<form id="PayU" method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+        <input name="merchantId"    type="hidden"  value=${merchantid}   >
+        <input name="accountId"     type="hidden"  value="512321" >
+        <input name="description"   type="hidden"  value="Test PAYU"  >
+        <input name="referenceCode" type="hidden"  value=${idOrden} >
+        <input name="amount"        type="hidden"  value=${total}   >
+        <input name="tax"           type="hidden"  value="0"  >
+        <input name="taxReturnBase" type="hidden"  value="0" >
+        <input name="currency"      type="hidden"  value="COP" >
+        <input name="signature"     type="hidden"  value=${signature}>
+        <input name="test"          type="hidden"  value="0">
+        <input name="buyerEmail"    type="hidden"  value="santiago.laitoncubides@hotmail.com" >
+        <input name="responseUrl"    type="hidden"  value="https://proyectoarsw2021backend.herokuapp.com/productos/Camiseta" >
+        <input name="confirmationUrl"    type="hidden"  value="https://proyectoarsw2021backend.herokuapp.com/productos/Camiseta" >
+        <input name="Submit" class="btn btn-success"       type="submit"  value="Generar Pago"  >
+        </form>`
+        $("#PayU").append(payu); 
+        /**
         if(descripcion===""||direccion===""||ciudad===""){
             alert("Completar campos requeridos");
         }else{
             apiclient.crearOrdendeCompra(total,carritoSelect.productos,descripcion,direccion,ciudad);
-        }
+        } 
+         */
+        
     }
 
     return{
