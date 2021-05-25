@@ -164,6 +164,28 @@ var apiclient = (function(){
 			console.info("ERROR");
 		});
 	}
+	crearCarrito=function(id,nombre,listaProductos,cantidad,subtotal,correo)
+	{
+		var json=JSON.stringify({
+			"id" : id ,
+			"nombreProducto" : nombre ,
+			"productos" :listaProductos ,
+			"correo": correo,
+			"cantidad" : cantidad ,
+			"subTotal" : subtotal ,
+		})
+		var promise=$.ajax({
+			url: "http://localhost:8080/carritodecompras/",
+			method: "POST",
+			data: json,
+			contentType:"application/json"
+		});
+		promise.then(function(){
+			console.info("ok");
+		},function(){
+			console.info("ERROR");
+		});
+	}
 	getInventarios = function (callback){
 		var productos = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/todoslosinventarios/", function() {
 		  response=productos.responseText;
@@ -232,6 +254,7 @@ var apiclient = (function(){
 		});
 	}
 	return{
+		crearCarrito:crearCarrito,
 		getProductosTipos:getProductosTipos,
 		getProductoById:getProductoById,
 		crearProducto:crearProducto,

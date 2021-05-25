@@ -20,6 +20,7 @@ login = (function (){
             alert("Completar campos requeridos");
         }else{
             apiclient.crearUsuario(cargo,nombreUsuario,telefono,correo,direccion,contraseña);
+            apiclient.crearCarrito(null,nombreUsuario,[],0,0,correo)
         }
     }
 
