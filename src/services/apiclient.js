@@ -119,6 +119,14 @@ var apiclient = (function(){
 			alert("Inicio de sesion correcto");
 			localStorage.setItem("usuario",data)
 			localStorage.setItem("correo",username)
+			if(username==="oadavilaf18@gmail.com")
+			{
+				window.location.href="viewAdminInventario.html";
+			}else
+			{
+				window.location.href="index.html";
+			}
+			
 		},function(){
 			console.info("ERROR");
 			console.log(username);

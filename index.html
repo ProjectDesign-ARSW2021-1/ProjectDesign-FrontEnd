@@ -30,7 +30,7 @@
 
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="public/bootstrap/css/style.css"/>
-
+		<script src="./src/services/app.js"></script>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,6 +53,7 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i> Bogotá , Colombia </a></li>
 					</ul>
 					<ul class="header-links pull-right">
+						<li><a id="cerrarSesion"onclick="app.borrarLocalstorage()"><i class="fa fa-user-o"></i>Cerrar Sesión</a></li>
 						<li><a href="miCuenta.html"><i class="fa fa-user-o"></i> Mi Cuenta </a></li>
 						<li><a href="viewAdminCrearProducto.html"><i class="fa fa-user-o"></i> Inventario </a></li>
 					</ul>
@@ -255,6 +256,7 @@
 									<li><a href="#"><i class="fa fa-map-marker"></i>Bogotá,Colombia</a></li>
 									<li><a href="#"><i class="fa fa-phone"></i>+57 312 345 67 89</a></li>
 									<li><a href="#"><i class="fa fa-envelope-o"></i>projectDesign@gmail.com</a></li>
+									
 								</ul>
 							</div>
 						</div>						
