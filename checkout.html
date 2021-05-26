@@ -36,7 +36,7 @@
 		<![endif]-->
 
     </head>
-	<body onload="product.obtenerCarritoDelUsuarioCheckout('21324'),product.obtenerCarritoDelUsuario('21324')">
+	<body onload="product.obtener_localstorage(),product.obtenerCarritoDelUsuario()">
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
@@ -173,14 +173,16 @@
 							<div class="section-title">
 								<h3 class="title">Datos de Despacho</h3>
 							</div>
-							<div class="form-group">
-								<div>Nombre del Usuario Loggeado</div>
+							<div class="order-summary" >
+								<div class="order-col" id=correo>
+									<div>
+										<h3>Correo del comprador:</h3>
+									</div>
+								</div>
 							</div>
 							<div class="form-group">
-								<div> Email del usuario Loggeado</div>
+								<input class="input" id=telefono type="text" name="Telefono" placeholder="Telefono">
 							</div>
-							<div class="form-group">
-								<div> Telefono del usuario Loggeado</div>							</div>
 							<div class="form-group">
 								<input class="input" id=direccion type="text" name="address" placeholder="Dirección">
 							</div>
@@ -230,7 +232,7 @@
 								<div><strong>Gratis</strong></div>
 							</div>
 							<div class="order-col" id=total>
-								<div id=hp><strong>TOTAL</strong></div>
+								<div><strong>TOTAL</strong></div>
 							</div>
 						</div>
 						

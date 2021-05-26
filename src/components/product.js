@@ -166,6 +166,12 @@ product = (function (){
             console.log(carrito);
             var hola=carrito.productos;
             localStorage.setItem("carrito",carrito.productos);
+
+            correo=localStorage.getItem("correo");
+            divisiontotal=`<div><strong class="order-total">
+                    ${correo}
+                    </strong></div>`
+            $("#correo").append(divisiontotal); 
             if (hola.lenght!==0){
                 iterar=hola.map((info)=>{
                 total=total+info.precio;
@@ -178,7 +184,7 @@ product = (function (){
                 $("#lista").append(division); 
             })
             divisiontotal=`<div><strong class="order-total">${total}</strong></div>`
-                $("#hp").append(divisiontotal); 
+                $("#total").append(divisiontotal); 
             }
             else{
                 division=`<div class="order-products">
@@ -210,12 +216,12 @@ product = (function (){
         ciudad=$("#ciudad").val();
         apikey="4Vj8eK4rloUd272L48hsrarnUA";
         merchantid="508029";
-        idOrden="Orden10";
+        idOrden="Orden30";
         divisa="COP";
+        
         firma=apikey+"~"+merchantid+"~"+idOrden+"~"+total+"~"+divisa;
         signature=CryptoJS.MD5(firma).toString();
-        console.log(signature);
-
+        
         var payu=`<form id="PayU" method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
         <input name="merchantId"    type="hidden"  value=${merchantid}   >
         <input name="accountId"     type="hidden"  value="512321" >
@@ -227,9 +233,9 @@ product = (function (){
         <input name="currency"      type="hidden"  value="COP" >
         <input name="signature"     type="hidden"  value=${signature}>
         <input name="test"          type="hidden"  value="0">
-        <input name="buyerEmail"    type="hidden"  value="santiago.laitoncubides@hotmail.com" >
-        <input name="responseUrl"    type="hidden"  value="https://proyectoarsw2021backend.herokuapp.com/productos/Camiseta" >
-        <input name="confirmationUrl"    type="hidden"  value="https://proyectoarsw2021backend.herokuapp.com/productos/Camiseta" >
+        <input name="buyerEmail"    type="hidden"  value=${localStorage.getItem("correo")} >
+        <input name="responseUrl"    type="hidden"  value="https://projectdesignfrontend.herokuapp.com/index.html" >
+        <input name="confirmationUrl"    type="hidden"  value="https://projectdesignfrontend.herokuapp.com/index.html" >
         <input name="Submit" class="btn btn-success"       type="submit"  value="Generar Pago"  >
         </form>`
         $("#PayU").append(payu); 
