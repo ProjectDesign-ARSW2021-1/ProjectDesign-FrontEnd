@@ -216,7 +216,7 @@ product = (function (){
         ciudad=$("#ciudad").val();
         apikey="4Vj8eK4rloUd272L48hsrarnUA";
         merchantid="508029";
-        idOrden="Orden30";
+        idOrden="Orden40";
         divisa="COP";
         
         firma=apikey+"~"+merchantid+"~"+idOrden+"~"+total+"~"+divisa;
