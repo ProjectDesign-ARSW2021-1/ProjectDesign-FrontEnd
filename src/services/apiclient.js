@@ -188,7 +188,7 @@ var apiclient = (function(){
 			"subTotal" : subtotal ,
 		})
 		var promise=$.ajax({
-			url: "http://localhost:8080/carritodecompras/",
+			url: "https://proyectoarsw2021backend.herokuapp.com/carritodecompras/",
 			method: "POST",
 			data: json,
 			contentType:"application/json"
@@ -244,18 +244,19 @@ var apiclient = (function(){
 			alert("No se encontro el inventario del producto con id : "+id)
 		});	
 	}*/
-	getCarritoUsuario=function(id,callback){
-		var carrito = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/carrito/"+id, function() {
+	getCarritoUsuario=function(correo,callback){
+		var carrito = $.getJSON("https://proyectoarsw2021backend.herokuapp.com/carritobyCorreo/"+correo, function() {
 		  response=carrito.responseText;
 		}).done(function(){
 			callback(JSON.parse(carrito.responseText))})
 		.fail(()=>{
-			alert("Carrito : "+id)
+			alert("Carrito : "+correo)
 		});	
 	},
 	actualizarCarrito=function (id,carrito) {
+		console.log(carrito);
 		var promise = $.ajax({
-			url: "https://proyectoarsw2021backend.herokuapp.com/actualizarcarrito/"+'21324',
+			url: "https://proyectoarsw2021backend.herokuapp.com/actualizarcarrito/"+id,
 			type: 'PUT',
 			data: JSON.stringify(carrito),
 			contentType: "application/json"

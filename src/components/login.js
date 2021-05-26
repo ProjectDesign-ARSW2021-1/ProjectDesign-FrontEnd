@@ -12,7 +12,6 @@ login = (function (){
     var telefonoToken;
 
     const llenarFormularioUsuario=()=>{
-        cargo=$("#cargoUsuario").val();
         nombreUsuario=$("#nombreUsuario").val();
         telefono=$("#telefono").val();
         correo=$("#correoUsuario").val();
@@ -21,7 +20,7 @@ login = (function (){
         if(cargo===""||nombreUsuario===""||telefono===""||correo===""||direccion===""||contraseña===""){
             alert("Completar campos requeridos");
         }else{
-            apiclient.crearUsuario(cargo,nombreUsuario,telefono,correo,direccion,contraseña);
+            apiclient.crearUsuario('Cliente',nombreUsuario,telefono,correo,direccion,contraseña);
             apiclient.crearCarrito(null,nombreUsuario,[],0,0,correo)
         }
     }

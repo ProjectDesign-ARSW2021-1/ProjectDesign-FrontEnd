@@ -45,7 +45,7 @@ product = (function (){
                         <h4 class="product-price" id="product-price">${info.precio}</h4>
                     </div>
                     <div class="add-to-cart">
-                    <button class="add-to-cart-btn" onclick="product.obtenerCarritoDelUsuario('21324'),product.buscarporid(${info.id})"><i class="fa fa-shopping-cart"></i> Añadir al Carrito </button></a>
+                    <button class="add-to-cart-btn" onclick="product.obtenerCarritoDelUsuario(),product.buscarporid(${info.id})"><i class="fa fa-shopping-cart"></i> Añadir al Carrito </button></a>
                     </div>
                 </div>
             </div>`
@@ -63,32 +63,30 @@ product = (function (){
         var productosViejos =carritoSelect.productos;
         productosViejos.push(producto);
         carritoSelect.productos=productosViejos;
-        apiclient.actualizarCarrito('21324',carritoSelect.productos);
+        console.log(carritoSelect);
+        apiclient.actualizarCarrito(localStorage.getItem("correo"),carritoSelect.productos);
         alert("Añadido al carrito")
     }
     function obtener_localstorage(){
-        console.log("hola")
-        carrito=localStorage.getItem("usuario");
         correo=localStorage.getItem("correo");
-        console.log(correo);
-        
-        if(carrito!==null)
+        if(correo!==null)
         {
-            apiclient.getUsuarioToken(carrito,getDatosUsuario);
+            obtenerCarritoDelUsuarioCheckout(correo);
         }else
         {
+            window.location.href="miCuenta.html";
             alert("Debe iniciar Sesion primero");
         }
         
     }
     
-    function obtenerCarritoDelUsuario(id){
-        apiclient.getCarritoUsuario(id,setCarrito);
+    function obtenerCarritoDelUsuario(){
+        correo=localStorage.getItem("correo");
+        apiclient.getCarritoUsuario(correo,setCarrito);
 
     }
     function setCarrito(carrito){
         carritoSelect=carrito;
-        return  
     }
     function getCarrito(){
         console.log("HOLA")
@@ -149,7 +147,7 @@ product = (function (){
                         </div>
                     </label>
                 <div class="add-to-cart">
-							<p onclick="product.obtenerCarritoDelUsuario('21324'),product.buscarporid(${producto.id})" class="primary-btn order-submit">Añadir al Carrito</a></p>
+							<p onclick="product.obtenerCarritoDelUsuario(${localStorage.getItem("correo")}),product.buscarporid(${producto.id})" class="primary-btn order-submit">Añadir al Carrito</a></p>
 				</div>
             </div>
             </div>
@@ -161,10 +159,11 @@ product = (function (){
             console.log(carritoSelect);
             apiclient.actualizarCarrito('hola',[]);
         }
-        function obtenerCarritoDelUsuarioCheckout(id){
-            apiclient.getCarritoUsuario(id,checkout);
+        function obtenerCarritoDelUsuarioCheckout(correo){
+            apiclient.getCarritoUsuario(correo,checkout);
         }
         function checkout(carrito){
+            console.log(carrito);
             var hola=carrito.productos;
             localStorage.setItem("carrito",carrito.productos);
             if (hola.lenght!==0){
