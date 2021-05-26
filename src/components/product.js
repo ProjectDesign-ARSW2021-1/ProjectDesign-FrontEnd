@@ -215,10 +215,10 @@ product = (function (){
         direccion=$("#direccion").val();
         ciudad=$("#ciudad").val();
         apikey="4Vj8eK4rloUd272L48hsrarnUA";
-        merchantid="508029";
-        idOrden="Orden40";
+        merchantid="508029";		
+        idOrden="Orden"+Math.random();
         divisa="COP";
-        
+        console.log(idOrden);
         firma=apikey+"~"+merchantid+"~"+idOrden+"~"+total+"~"+divisa;
         signature=CryptoJS.MD5(firma).toString();
         
